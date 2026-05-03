@@ -1,0 +1,176 @@
+#include <iostream>
+using namespace std;
+
+/*
+    Aluno: Elionay da Fonseca Vieira
+    A nomenclatura utilizada PascalCase.
+*/
+
+// Funcao responsavel pela Atividade 1
+void ControleDeAcessoAreaDeCarga() {
+    int TemCracha;
+    int AlertaSeguranca;
+
+    cout << "=== Atividade 1: Controle de Acesso a Area de Carga ===" << endl;
+
+    // Entrada de dados informando se o funcionario possui cracha
+    cout << "O funcionario tem cracha? Digite 1 para sim ou 0 para nao: ";
+    cin >> TemCracha;
+
+    // Entrada de dados informando se existe alerta de seguranca ativo
+    cout << "Existe alerta de seguranca ativo? Digite 1 para sim ou 0 para nao: ";
+    cin >> AlertaSeguranca;
+
+    // O acesso so sera permitido se tiver cracha E nao houver alerta ativo
+    if (TemCracha && !AlertaSeguranca) {
+        cout << "Acesso Permitido" << endl;
+    } else {
+        cout << "Acesso Negado" << endl;
+    }
+}
+
+// Funcao responsavel pela Atividade 2
+void SistemaDeIrrigacaoAutomatica() {
+    int UmidadeBaixa;
+    int HorarioRegar;
+
+    cout << "=== Atividade 2: Sistema de Irrigacao Automatica ===" << endl;
+
+    // Entrada de dados sobre a umidade do solo
+    cout << "A umidade do solo esta baixa? Digite 1 para sim ou 0 para nao: ";
+    cin >> UmidadeBaixa;
+
+    // Entrada de dados sobre o horario de regar
+    cout << "Esta no horario de regar? Digite 1 para sim ou 0 para nao: ";
+    cin >> HorarioRegar;
+
+    // A irrigacao sera ativada se a umidade estiver baixa OU estiver no horario de regar
+    if (UmidadeBaixa || HorarioRegar) {
+        cout << "Irrigacao Ativada" << endl;
+    } else {
+        cout << "Irrigacao Desligada" << endl;
+    }
+}
+
+// Funcao responsavel pela Atividade 3
+void VerificacaoDeEstoqueEValidade() {
+    int QuantidadeEstoque;
+    int ValidadeVencida;
+
+    cout << "=== Atividade 3: Verificacao de Estoque e Validade ===" << endl;
+
+    // Entrada da quantidade de produtos disponiveis no estoque
+    cout << "Digite a quantidade em estoque: ";
+    cin >> QuantidadeEstoque;
+
+    // Entrada informando se a validade esta vencida
+    cout << "A validade esta vencida? Digite 1 para sim ou 0 para nao: ";
+    cin >> ValidadeVencida;
+
+    // O produto so pode ser vendido se houver estoque E a validade nao estiver vencida
+    if (QuantidadeEstoque > 0 && !ValidadeVencida) {
+        cout << "Produto Pronto para Venda" << endl;
+    } else {
+        cout << "Produto nao pode ser vendido" << endl;
+    }
+}
+
+// Funcao responsavel pela Atividade 4
+void SensorDeEstacionamentoInteligente() {
+    float Distancia;
+    int MovimentoDetectado;
+
+    cout << "=== Atividade 4: Sensor de Estacionamento Inteligente ===" << endl;
+
+    // Entrada da distancia entre o carro e o obstaculo
+    cout << "Digite a distancia do obstaculo em cm: ";
+    cin >> Distancia;
+
+    // Entrada informando se algum movimento foi detectado
+    cout << "Existe movimento detectado? Digite 1 para sim ou 0 para nao: ";
+    cin >> MovimentoDetectado;
+
+    // O alerta sera emitido se a distancia for menor que 50cm OU se houver movimento detectado
+    if (Distancia < 50 || MovimentoDetectado) {
+        cout << "ALERTA: PARE!" << endl;
+    } else {
+        cout << "Sem perigo detectado" << endl;
+    }
+}
+
+// Funcao responsavel pela Atividade 5
+void AprovacaoDeEmprestimoBancario() {
+    float Renda;
+    int PossuiRestricao;
+
+    cout << "=== Atividade 5: Aprovacao de Emprestimo Bancario ===" << endl;
+
+    // Entrada da renda mensal do cliente
+    cout << "Digite a renda mensal do cliente: R$ ";
+    cin >> Renda;
+
+    // Entrada informando se o cliente possui restricao no nome
+    cout << "O cliente possui restricao no nome? Digite 1 para sim ou 0 para nao: ";
+    cin >> PossuiRestricao;
+
+    // O emprestimo so sera aprovado se a renda for maior que 3000 E o cliente nao possuir restricao
+    if (Renda > 3000 && !PossuiRestricao) {
+        cout << "Emprestimo Aprovado" << endl;
+    } else {
+        cout << "Emprestimo Negado" << endl;
+    }
+}
+
+int main() {
+    int Opcao;
+
+    cout << "========================================" << endl;
+    cout << "           TABELA VERDADE " << endl;
+    cout << "========================================" << endl;
+    cout << "Aluno: Elionay da Fonseca Vieira" << endl;
+    cout << "========================================" << endl << endl;
+
+    // Menu principal para o usuario escolher qual atividade deseja executar
+    cout << "Escolha uma atividade para executar:" << endl;
+    cout << "1 - Controle de Acesso a Area de Carga" << endl;
+    cout << "2 - Sistema de Irrigacao Automatica" << endl;
+    cout << "3 - Verificacao de Estoque e Validade" << endl;
+    cout << "4 - Sensor de Estacionamento Inteligente" << endl;
+    cout << "5 - Aprovacao de Emprestimo Bancario" << endl;
+    cout << "Opcao: ";
+    cin >> Opcao;
+
+    cout << endl;
+
+    // Estrutura de decisao para executar a atividade escolhida
+    switch (Opcao) {
+        case 1:
+            ControleDeAcessoAreaDeCarga();
+            break;
+
+        case 2:
+            SistemaDeIrrigacaoAutomatica();
+            break;
+
+        case 3:
+            VerificacaoDeEstoqueEValidade();
+            break;
+
+        case 4:
+            SensorDeEstacionamentoInteligente();
+            break;
+
+        case 5:
+            AprovacaoDeEmprestimoBancario();
+            break;
+
+        default:
+            cout << "Opcao invalida. Execute o programa novamente." << endl;
+            break;
+    }
+
+    cout << endl;
+    cout << "Fim do programa." << endl;
+
+    return 0;
+}
