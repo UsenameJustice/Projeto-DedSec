@@ -1,0 +1,147 @@
+/*
+Aluno: Elionay da Fonseca Vieira
+Atividade: Jogo da Velha
+Linguagem: C
+Padrão de nomenclatura: PascalCase
+*/
+
+#include <stdio.h>
+
+// Mostra a grade atual do jogo
+void ExibirGrade(char Grade[3][3])
+{
+    int Linha;
+    int Coluna;
+
+    printf("\n");
+
+    for (Linha = 0; Linha < 3; Linha++)
+    {
+        printf(" ");
+
+        for (Coluna = 0; Coluna < 3; Coluna++)
+        {
+            printf("%c", Grade[Linha][Coluna]);
+
+            if (Coluna < 2)
+            {
+                printf(" | ");
+            }
+        }
+
+        printf("\n");
+
+        if (Linha < 2)
+        {
+            printf("---+---+---\n");
+        }
+    }
+
+    printf("\n");
+}
+
+// Verifica linhas, colunas e diagonais
+char ConferirResultado(char Grade[3][3])
+{
+    int Contador;
+
+    for (Contador = 0; Contador < 3; Contador++)
+    {
+        if (Grade[Contador][0] == Grade[Contador][1] &&
+            Grade[Contador][1] == Grade[Contador][2])
+        {
+            return Grade[Contador][0];
+        }
+
+        if (Grade[0][Contador] == Grade[1][Contador] &&
+            Grade[1][Contador] == Grade[2][Contador])
+        {
+            return Grade[0][Contador];
+        }
+    }
+
+    if (Grade[0][0] == Grade[1][1] && Grade[1][1] == Grade[2][2])
+    {
+        return Grade[0][0];
+    }
+
+    if (Grade[0][2] == Grade[1][1] && Grade[1][1] == Grade[2][0])
+    {
+        return Grade[0][2];
+    }
+
+    return ' ';
+}
+
+int main()
+{
+    char Grade[3][3] = {
+        {'1', '2', '3'},
+        {'4', '5', '6'},
+        {'7', '8', '9'}};
+
+    int PosicaoMarcada;
+    int LinhaSelecionada;
+    int ColunaSelecionada;
+    int JogadasRealizadas = 0;
+    char SimboloAtual = 'X';
+    char Resultado = ' ';
+
+    printf("========================================\n");
+    printf("             PARTIDA 3X3 EM C            \n");
+    printf("========================================\n");
+
+    // A partida segue até haver vencedor ou completar 9 jogadas
+    while (JogadasRealizadas < 9 && Resultado == ' ')
+    {
+        ExibirGrade(Grade);
+
+        printf("Jogador %c, escolha uma posicao livre: ", SimboloAtual);
+        scanf("%d", &PosicaoMarcada);
+
+        if (PosicaoMarcada < 1 || PosicaoMarcada > 9)
+        {
+            printf("\nEntrada invalida. Escolha apenas numeros de 1 a 9.\n");
+        }
+        else
+        {
+            LinhaSelecionada = (PosicaoMarcada - 1) / 3;
+            ColunaSelecionada = (PosicaoMarcada - 1) % 3;
+
+            if (Grade[LinhaSelecionada][ColunaSelecionada] == 'X' ||
+                Grade[LinhaSelecionada][ColunaSelecionada] == 'O')
+            {
+                printf("\nEssa posicao ja esta ocupada.\n");
+            }
+            else
+            {
+                Grade[LinhaSelecionada][ColunaSelecionada] = SimboloAtual;
+                JogadasRealizadas++;
+
+                Resultado = ConferirResultado(Grade);
+
+                if (SimboloAtual == 'X')
+                {
+                    SimboloAtual = 'O';
+                }
+                else
+                {
+                    SimboloAtual = 'X';
+                }
+            }
+        }
+    }
+
+    ExibirGrade(Grade);
+
+    if (Resultado == 'X' || Resultado == 'O')
+    {
+        printf("Fim da partida: jogador %c ganhou.\n", Resultado);
+    }
+    else
+    {
+        printf("Fim da partida: empate entre os jogadores.\n");
+    }
+
+    return 0;
+}

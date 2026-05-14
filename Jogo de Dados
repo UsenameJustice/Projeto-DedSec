@@ -1,0 +1,51 @@
+/*
+Aluno: Elionay da Fonseca Vieira
+Atividade: Lançamento de Dados
+Linguagem: C
+Padrão de nomenclatura: PascalCase
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main()
+{
+    int PrimeiroValor;
+    int SegundoValor;
+    int TotalObtido;
+
+    srand(time(NULL));
+
+    printf("========================================\n");
+    printf("        MESA DIGITAL DE LANCAMENTO       \n");
+    printf("========================================\n\n");
+
+    printf("Dois dados serao lancados automaticamente.\n\n");
+
+    // Geração dos valores aleatórios dos dados
+    PrimeiroValor = 1 + rand() % 6;
+    SegundoValor = 1 + rand() % 6;
+
+    TotalObtido = PrimeiroValor + SegundoValor;
+
+    printf("Dado A sorteado: %d\n", PrimeiroValor);
+    printf("Dado B sorteado: %d\n", SegundoValor);
+    printf("Pontuacao total: %d\n\n", TotalObtido);
+
+    // Análise do resultado final da rodada
+    if (TotalObtido == 7 || TotalObtido == 11)
+    {
+        printf("Resultado da rodada: Jogador venceu.\n");
+    }
+    else if (TotalObtido == 2 || TotalObtido == 3 || TotalObtido == 12)
+    {
+        printf("Resultado da rodada: Jogador perdeu.\n");
+    }
+    else
+    {
+        printf("Resultado da rodada: Ponto marcado. Continue jogando.\n");
+    }
+
+    return 0;
+}

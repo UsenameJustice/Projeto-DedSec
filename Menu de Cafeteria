@@ -1,0 +1,79 @@
+/*
+Aluno: Elionay da Fonseca Vieira
+Atividade: Atendimento de Cafeteria
+Linguagem: C
+Padrão de nomenclatura: PascalCase
+*/
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char ProdutoEscolhido[50];
+    float ValorFinal = 0.0;
+    int ContinuarAtendimento = 1;
+
+    printf("========================================\n");
+    printf("          SISTEMA DE CAIXA CAFE          \n");
+    printf("========================================\n\n");
+
+    printf("Produtos disponiveis:\n");
+    printf("expresso     - R$ 5.50\n");
+    printf("capuccino    - R$ 8.00\n");
+    printf("pao          - R$ 4.00\n");
+    printf("torta        - R$ 9.50\n\n");
+
+    printf("Digite um produto para adicionar ao pedido.\n");
+    printf("Digite 'conta' para encerrar e mostrar o total.\n");
+    printf("Digite 'sair' para finalizar sem novos pedidos.\n\n");
+
+    // Repetição usada para manter o atendimento ativo
+    do
+    {
+        printf("Produto informado: ");
+        fgets(ProdutoEscolhido, 50, stdin);
+
+        // Remove o caractere de quebra de linha capturado pelo fgets
+        ProdutoEscolhido[strcspn(ProdutoEscolhido, "\n")] = '\0';
+
+        if (strcmp(ProdutoEscolhido, "expresso") == 0)
+        {
+            ValorFinal += 5.50;
+            printf("Expresso inserido na comanda.\n\n");
+        }
+        else if (strcmp(ProdutoEscolhido, "capuccino") == 0)
+        {
+            ValorFinal += 8.00;
+            printf("Capuccino inserido na comanda.\n\n");
+        }
+        else if (strcmp(ProdutoEscolhido, "pao") == 0)
+        {
+            ValorFinal += 4.00;
+            printf("Pao inserido na comanda.\n\n");
+        }
+        else if (strcmp(ProdutoEscolhido, "torta") == 0)
+        {
+            ValorFinal += 9.50;
+            printf("Torta inserida na comanda.\n\n");
+        }
+        else if (strcmp(ProdutoEscolhido, "conta") == 0)
+        {
+            printf("\nTotal a pagar: R$ %.2f\n", ValorFinal);
+            printf("Comanda encerrada com sucesso.\n");
+            ContinuarAtendimento = 0;
+        }
+        else if (strcmp(ProdutoEscolhido, "sair") == 0)
+        {
+            printf("\nSistema finalizado pelo atendente.\n");
+            ContinuarAtendimento = 0;
+        }
+        else
+        {
+            printf("Produto nao localizado na lista.\n\n");
+        }
+
+    } while (ContinuarAtendimento == 1);
+
+    return 0;
+}
